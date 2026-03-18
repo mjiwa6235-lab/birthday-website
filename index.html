@@ -12,7 +12,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/
 
 <style>
 body{
-  background-image: url("foto.jpg");
+  background-image: url("foto1.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -23,24 +23,20 @@ body{
 
 <body class="flex justify-center items-center min-h-screen p-5">
 
-<div
-class="bg-white border px-8 py-6 border-4 border-gray-300 shadow-lg shadow-blue-300 rounded-xl text-center animate__animated animate__backInDown w-96 max-h-[85vh] overflow-y-auto"
-id="kartu"
->
+<!-- Musik -->
+<audio id="musik" loop>
+  <source src="musik.mp3" type="audio/mpeg">
+</audio>
+
+<div id="kartu"
+class="bg-white px-8 py-6 rounded-xl shadow-lg text-center w-96 max-h-[85vh] overflow-y-auto">
 
 <h1 class="text-3xl">Happy Birthday🎉</h1>
+<h1 class="text-4xl text-blue-500 font-bold">Lamii🤍</h1>
 
-<h1
-class="text-4xl text-blue-500 font-bold animate__animated animate__pulse animate__infinite"
->
-Lamii🤍
-</h1>
-
-<button
-class="p-2 bg-blue-600 text-white rounded mt-5 hover:bg-blue-900 transition w-full"
-onclick="ubahKartu()"
->
-Klik ini 🎈
+<button onclick="nextSlide()"
+class="p-2 bg-blue-600 text-white rounded mt-5 w-full">
+Klik di sini 🎈
 </button>
 
 </div>
@@ -48,63 +44,104 @@ Klik ini 🎈
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
 
 <script>
-
-confetti({
-particleCount:100,
-spread:70,
-origin:{ y:0.6 }
-});
-
+let slide = 0;
 let kartu = document.getElementById("kartu");
+let musik = document.getElementById("musik");
 
-function ubahKartu(){
+function nextSlide(){
+
+slide++;
+
+// mulai musik saat klik pertama
+musik.play();
+
+if(slide==1){
 kartu.innerHTML = `
+<img src="foto1.jpg" class="rounded-lg mb-3">
 
-<img src="foto.jpg" class="rounded-lg mb-4 animate__animated animate__zoomIn">
-
-<h1 class="text-gray-800 text-left leading-relaxed animate__animated animate__fadeIn">
-
-Happy Birthday. 🎂✨ <br><br>
-
-Hari ini waktu kembali menambahkan satu bab baru dalam perjalanan hidupmu.
-Hidup memang penuh musim—ada bahagia, ada juga luka yang diam-diam
-menguatkan kita.
-
-<br><br>
-
-Semoga semua usaha dan perjuanganmu menemukan jalannya,
-dan semoga kamu bisa lolos ke PTN impianmu.
-
-<br><br>
-
-Tetaplah tersenyum, karena senyummu bisa menghangatkan
-hari-hari yang redup.
-
-<br><br>
-
-Happy birthday,
-semoga hidup membawamu menuju kebahagiaan dan mimpi-mimpimu. ✨
-
+<h1 class="text-gray-800">
+Hai kamu... hari ini hari spesial 🎂
 </h1>
 
-<h2 class="mt-4 text-gray-700">
-- Dari : adalah pokoknya -
-</h2>
-
-<button
-class="p-2 bg-slate-600 text-white rounded mt-5 hover:bg-slate-900 transition w-full"
-onclick="refresh()"
->
-Tutup
+<button onclick="nextSlide()" class="mt-4 p-2 bg-blue-500 text-white rounded w-full">
+Next ➡️
 </button>
-
 `;
 }
 
-function refresh(){
-location.reload();
+else if(slide==2){
+kartu.innerHTML = `
+<img src="foto2.jpg" class="rounded-lg mb-3">
+
+<h1 class="text-gray-800">
+Semoga semua impianmu tercapai ✨
+</h1>
+
+<button onclick="nextSlide()" class="mt-4 p-2 bg-blue-500 text-white rounded w-full">
+Next ➡️
+</button>
+`;
 }
 
+else if(slide==3){
+kartu.innerHTML = `
+
+<img src="foto3.jpg" class="rounded-lg mb-3">
+
+<div class="text-gray-800 text-left leading-relaxed">
+
+Happy Birthday 🎂✨ <br><br>
+
+Hari ini waktu kembali menambahkan satu bab baru dalam hidupmu.
+Semoga kamu selalu kuat menjalani semuanya.
+
+<br><br>
+
+Semoga kamu bisa lolos ke PTN impianmu,
+dan semua yang kamu perjuangkan tercapai.
+
+<br><br>
+
+Tetap tersenyum ya,
+karena kamu berharga 🤍
+
+<br><br>
+
+Aku akan selalu ada untukmu ✨
+
+</div>
+
+<button onclick="nextSlide()" class="mt-4 p-2 bg-blue-500 text-white rounded w-full">
+Next ➡️
+</button>
+`;
+}
+
+else if(slide==4){
+kartu.innerHTML = `
+
+<h1 class="text-3xl text-pink-500 animate__animated animate__tada">
+🎉 HAPPY BIRTHDAY 🎉
+</h1>
+
+<p class="mt-3">Semoga bahagia selalu 🤍</p>
+
+<button onclick="location.reload()" 
+class="mt-4 p-2 bg-gray-600 text-white rounded w-full">
+Ulangi 🔄
+</button>
+`;
+
+// confetti di akhir
+confetti({
+particleCount:200,
+spread:100,
+origin:{ y:0.6 }
+});
+
+}
+
+}
 </script>
 
 </body>
