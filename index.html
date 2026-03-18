@@ -23,9 +23,9 @@ body{
 
 <body class="flex justify-center items-center min-h-screen p-5">
 
-<!-- 🎵 Musik dari internet -->
+<!-- Musik -->
 <audio id="musik" loop>
-  <source src="https://youtu.be/EhYlcz_aEok?si=YikwHiGHJXDpFGGS" type="audio/mpeg">
+  <source src="musik.mp3" type="audio/mpeg">
 </audio>
 
 <div id="kartu"
@@ -52,10 +52,8 @@ function nextSlide(){
 
 slide++;
 
-// ▶️ play musik (lebih aman)
-musik.play().catch(() => {
-  console.log("musik tidak bisa autoplay sebelum interaksi");
-});
+// mulai musik saat klik pertama
+musik.play();
 
 if(slide==1){
 kartu.innerHTML = `
@@ -134,6 +132,7 @@ Ulangi 🔄
 </button>
 `;
 
+// confetti di akhir
 confetti({
 particleCount:200,
 spread:100,
@@ -146,4 +145,4 @@ origin:{ y:0.6 }
 </script>
 
 </body>
-</html￼Enter
+</html>
